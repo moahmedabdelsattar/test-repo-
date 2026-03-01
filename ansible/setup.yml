@@ -1,0 +1,14 @@
+- name: Configure Jenkins EC2
+  hosts: jenkins
+  become: yes
+  tasks:
+    - name: Install Git
+      yum: name=git state=present
+    - name: Install Docker
+      yum: name=docker state=present
+    - name: Install Java
+      yum: name=java-11-openjdk state=present
+    - name: Start Docker service
+      service: name=docker state=started enabled=yes
+    - name: Install Jenkins
+      yum: name=jenkins state=present
